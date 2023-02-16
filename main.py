@@ -49,4 +49,32 @@ async def test_ping(ctx):
     assert (response.content == correct_response)
 
 
+@client.command(name='hello', aliases=['hi'], pass_context=True)
+async def hello(ctx):
+    await ctx.send(f"Hello {ctx.author.name}")
+
+
+@client.command(name='Eldo')
+@commands.has_permissions(administrator=True)
+async def Eldo(ctx):
+    eld = "142962988523978752"
+    await ctx.send(f"Hi <@{eld}>")
+
+
+# manual help command
+@client.command()
+async def helpcarla(ctx):
+    embeds = discord.Embed(title="Commands",
+                           description="Carlas commands",
+                           color=discord.Color.blue())
+    embeds.add_field(name="!hello", value="Answers back with your discord name")
+    embeds.add_field(name="!purge x", value="Delete bulk of messages. Only officers can use it/have admin rights")
+    embeds.add_field(name="!hru", value="Random answers back from bot", inline=False)
+    embeds.add_field(name="!timestamp or !raid <yyyy-mm-dd hh:mm>",
+                     value="Registers date, time and gives choice of raid and tier")
+    embeds.add_field(name="!8ball <question>", value="You ask preferably a yes or no question. Carla answer back")
+
+    await ctx.send(embed=embeds)
+
+
 client.run(os.getenv('TOKEN2'))
