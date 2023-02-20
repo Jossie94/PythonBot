@@ -24,7 +24,7 @@ target_id = 936518781717598218  # test bot ID
 @client.event
 async def on_ready():
     print("The command bot is online")
-    url = "http://localhost:2386/api/Raids"
+    url = "http://localhost:3862/api/Raids"
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -75,6 +75,43 @@ async def helpcarla(ctx):
     embeds.add_field(name="!8ball <question>", value="You ask preferably a yes or no question. Carla answer back")
 
     await ctx.send(embed=embeds)
+
+
+@client.command()
+async def hru(ctx):
+    ra = ["I am good, thank you for asking",
+          "I am well. You, however, look unwell. Go outside.", "I was okay until I saw your outfit. Nasty.",
+          "I might be a bot, but I am not interested.",
+          "I was good until you asked. But you are not important enough to hate. Sit down.",
+          "Why on earth would you ask a bot how's it doing?",
+          "How am I? Who are you?"]
+    await ctx.send(random.choice(ra))
+
+
+# rude arraylist of 8ball
+@client.command(aliases=['8ball'])
+async def eightball(ctx, *, question):
+    resp = ["Definitely",
+            "No.",
+            "Yes.",
+            "What kind of question is that?",
+            "Are you sure you want the answer to that?",
+            "Thats not a pretty face enough for me to make me answer your question",
+            "Maybe.",
+            "Absolutely not",
+            "Obviously",
+            "There is this lousy bot called Carl. Ask him.",
+            "Yes queen"]
+    await ctx.send(f':8ball: Question: {question}\n:8ball: Answer: {random.choice(resp)}')
+
+
+# delete bulk of messages (requires administrator)
+@client.command()
+@commands.has_permissions(administrator=True)
+async def purge(ctx, amount: int):
+    if amount > 50:
+        amount = 50
+    await ctx.channel.purge(limit=amount + 1)
 
 
 client.run(os.getenv('TOKEN2'))
