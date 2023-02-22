@@ -226,4 +226,29 @@ async def timestamp(ctx, *, strinput):
     # make a try catch with no API connection if possible
 
 
+# result of raid sign up and users can sign up with emojis
+@client.event
+async def on_custom_event(ctx, raidselect, tier, botdate):
+    # userstr = str(payload.member)
+    embeds = discord.Embed(title=f"{raidselect}",
+                           # timestamp=botdate.datetime.utcnow(),
+                           color=discord.Color.dark_green())
+    # embeds.add_field(name="Raid", value=f"{raidselect}")
+    embeds.add_field(name="Date", value=f"{botdate}")
+    embeds.add_field(name="Tier", value=f"{tier}")
+    embeds.add_field(name="Leader", value=f"{ctx.author.name}")
+
+    embededit = discord.Embed(title=f"Signup",
+                              color=discord.Color.dark_green())
+    embededit.add_field(name="Player:", value=f"")
+    msg = await ctx.send(embed=embeds)
+    while True:
+        reaction, user = await client.wait_for("reaction_add",
+                                               check=lambda reaction, user: reaction.message.id == msg.id)
+        # embededit #finish your line Josefine.....
+
+
+# if on_raw_reaction_add:
+# print(f"reacted")
+
 client.run(os.getenv('TOKEN2'))
