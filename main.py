@@ -250,5 +250,31 @@ async def on_custom_event(ctx, raidselect, tier, botdate):
 
 # if on_raw_reaction_add:
 # print(f"reacted")
+@client.event
+async def on_reaction_add(reaction, user):
+    print(f"You reacted with {reaction.emoji} {user}")
+    url = "http://localhost:2386/api/Raidusers"
+
+    userD = str(user)
+
+    get_response = requests.get(url)
+    print(get_response.text)
+
+    post_data = {
+
+        "userDName": userD
+
+    }
+
+    print(type(post_data))
+    json_ob_tiba = json.dumps(post_data, indent=4, sort_keys=True, default=str)
+
+    print(json_ob_tiba)  # random json name. It prints json objects in the console
+
+    response = requests.post(url, json=post_data)
+
+    # client.dispatch("custom_event", userD)
+    print(response.status_code)
+    print(response.text)
 
 client.run(os.getenv('TOKEN2'))
