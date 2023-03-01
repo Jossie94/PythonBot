@@ -24,13 +24,13 @@ target_id = 936518781717598218  # test bot ID
 @client.event
 async def on_ready():
     print("The command bot is online")
-    url = "http://localhost:3862/api/Raids"
-    response = requests.get(url)
+  #  url = "http://localhost:3862/api/Raids"
+   # response = requests.get(url)
 
-    if response.status_code == 200:
-        print(response.status_code)
-    else:
-        print("Something is wrong with api")
+   # if response.status_code == 200:
+    #    print(response.status_code)
+   # else:
+       # print("Something is wrong with api")
 
 
 @client.command(name="ping")
@@ -115,26 +115,26 @@ async def purge(ctx, amount: int):
 
 
 # create a raid sign up
-@client.command(aliases=['raid'])
+#@client.command(aliases=['raid'])
 # @commands.has_permissions(administrator=True)
-async def timestamp(ctx, *, strinput):
+#async def timestamp(ctx, *, strinput):
     # url1 = "http://localhost:2386/api/Raids"
 
     # url2 = "http://localhost:2386/api/Raidusers"
-    print(strinput)
-    user = str(member)
+   # print(strinput)
+   # user = str(member)
 
     # utc = datetime.now(tzutc())
     # print('UTC TIME: ' + str(utc))
 
     # local = utc.astimezone(tzlocal())
     # print('Local TIME: ' + str(local))
-    fmt = "%Y-%m-%d %H:%M %Z%z"
+   # fmt = "%Y-%m-%d %H:%M %Z%z"
 
     # print(datetime.strptime(strinput, "%Y-%m-%dT%H:%M"))
     # stringformat = '{:%Y-%m-%d %H:%M:%S}'.format(strinput)
 
-    botdate = datetime.strptime(strinput, "%Y-%m-%d %H:%M")
+  #  botdate = datetime.strptime(strinput, "%Y-%m-%d %H:%M")
 
     # local = pytz.timezone("America/Los_Angeles")
     # local_dt = local.localize(botdate, is_dst=None)
@@ -142,84 +142,83 @@ async def timestamp(ctx, *, strinput):
 
     # print(utc_dt)
 
-    select1 = Select(min_values=1, max_values=1, placeholder='Select raid', options=[
-        discord.SelectOption(label="The Hiddenhoard of Abnankâra", value="Hiddenhoard of Abnankâra"),
-        discord.SelectOption(label="Amdân Dammul", value="Amdân Dammul"),
-        discord.SelectOption(label="The Fall of Khazadûm", value="Fall of Khazadûm"),
-        discord.SelectOption(label="Remmorchant", value="Remmorchant")
-    ],
-                     custom_id="select1")
-    select2 = Select(placeholder='Select tier', options=[
-        discord.SelectOption(label="T1", value="t1"),
-        discord.SelectOption(label="T2", value="t2"),
-        discord.SelectOption(label="T3", value="t3"),
-        discord.SelectOption(label="T4", value="t4"),
-        discord.SelectOption(label="T5", value="t5")
-    ],
-                     custom_id="select2")
+  #  select1 = Select(min_values=1, max_values=1, placeholder='Select raid', options=[
+   #     discord.SelectOption(label="The Hiddenhoard of Abnankâra", value="Hiddenhoard of Abnankâra"),
+   #     discord.SelectOption(label="Amdân Dammul", value="Amdân Dammul"),
+    #    discord.SelectOption(label="The Fall of Khazadûm", value="Fall of Khazadûm"),
+     #   discord.SelectOption(label="Remmorchant", value="Remmorchant")
+  #  ],
+    #                 custom_id="select1")
+   # select2 = Select(placeholder='Select tier', options=[
+    #    discord.SelectOption(label="T1", value="t1"),
+     #   discord.SelectOption(label="T2", value="t2"),
+      #  discord.SelectOption(label="T3", value="t3"),
+      #  discord.SelectOption(label="T4", value="t4"),
+      #  discord.SelectOption(label="T5", value="t5")
+  #  ],
+           #          custom_id="select2")
 
-    button = Button(label="Submit", style=discord.ButtonStyle.green, custom_id="button1")
+   # button = Button(label="Submit", style=discord.ButtonStyle.green, custom_id="button1")
 
-    async def my_callback1(interaction):  # callback method to select1
+   # async def my_callback1(interaction):  # callback method to select1
 
-        if select1.custom_id == "select1":
-            raid = select1.values[0]
-            print(raid)
-            await interaction.response.send_message(content=f"{select1.values[0]}")
-            return raid
+      #  if select1.custom_id == "select1":
+      #      raid = select1.values[0]
+        #    print(raid)
+         #   await interaction.response.send_message(content=f"{select1.values[0]}")
+         #   return raid
 
-    async def my_callback2(interaction):  # callback method to select2
+  #  async def my_callback2(interaction):  # callback method to select2
 
-        if select2.custom_id == "select2":
-            tiers = select2.values[0]
-            print(tiers)
-            await interaction.response.send_message(content=f"{select2.values[0]}")
-            return tiers
+       # if select2.custom_id == "select2":
+         #   tiers = select2.values[0]
+        #    print(tiers)
+         #   await interaction.response.send_message(content=f"{select2.values[0]}")
+          #  return tiers
 
-    async def button_callback(interaction):
-        if button.custom_id == "button1":
-            raidselect = select1.values[0]
-            tier = select2.values[0]
+   # async def button_callback(interaction):
+     #   if button.custom_id == "button1":
+       #     raidselect = select1.values[0]
+        #    tier = select2.values[0]
 
             # interaction.disabled = True
 
-            url = "http://localhost:2386/api/Raids"
+         #   url = "http://localhost:2386/api/Raids"
 
-            post_data = {'raidname': raidselect,
-                         'tier': tier,
-                         'raiddate': strinput.replace(" ", "T"),
-                         "raidusers": [
-                             {
-                                 "userDId": 0,
-                                 "userDName": ctx.author.name
+         #   post_data = {'raidname': raidselect,
+                #         'tier': tier,
+              #           'raiddate': strinput.replace(" ", "T"),
+                 #        "raidusers": [
+                 #            {
+                    #             "userDId": 0,
+                    #             "userDName": ctx.author.name
 
-                             }
-                         ]
-                         },
-            print(type(post_data))
-            json_ob_tiba = json.dumps(post_data, indent=4, sort_keys=True, default=str)
+                     #        }
+                     #    ]
+                    #     },
+           # print(type(post_data))
+         #   json_ob_tiba = json.dumps(post_data, indent=4, sort_keys=True, default=str)
 
-            print(json_ob_tiba)
+          #  print(json_ob_tiba)
 
-            response = requests.post(url, json=post_data[0])
-            pass
-            print(response.status_code)
-            print(response.text)
-            if response.status_code == 201:
-                client.dispatch("custom_event", ctx, raidselect, tier, botdate)
-            else:
-                await ctx.send("Something went wrong. Contact Celladis")
+          #  response = requests.post(url, json=post_data[0])
+          #  pass
+          #  print(response.status_code)
+          #  print(response.text)
+           # if response.status_code == 201:
+           #     client.dispatch("custom_event", ctx, raidselect, tier, botdate)
+          #  else:
+             #   await ctx.send("Something went wrong. Contact Celladis")
 
-    select1.callback = my_callback1
-    select2.callback = my_callback2
-    button.callback = button_callback
+   # select1.callback = my_callback1
+   # select2.callback = my_callback2
+   # button.callback = button_callback
 
-    view = View()
-    view.add_item(select1)
-    view.add_item(select2)
-    view.add_item(button)
+   # view.add_item(select1)
+   # view.add_item(select2)
+    #view.add_item(button)
 
-    await ctx.send(view=view)
+    #await ctx.send(view=view)
 
     # await interaction.send(content=f"{raidselect}, {tier}, {botdate} submitted")
 
@@ -253,12 +252,12 @@ async def on_custom_event(ctx, raidselect, tier, botdate):
 @client.event
 async def on_reaction_add(reaction, user):
     print(f"You reacted with {reaction.emoji} {user}")
-    url = "http://localhost:2386/api/Raidusers"
+   # url = "http://localhost:2386/api/Raidusers"
 
     userD = str(user)
 
-    get_response = requests.get(url)
-    print(get_response.text)
+  #  get_response = requests.get(url)
+  #  print(get_response.text)
 
     post_data = {
 
@@ -271,10 +270,10 @@ async def on_reaction_add(reaction, user):
 
     print(json_ob_tiba)  # random json name. It prints json objects in the console
 
-    response = requests.post(url, json=post_data)
+   # response = requests.post(url, json=post_data)
 
     # client.dispatch("custom_event", userD)
-    print(response.status_code)
-    print(response.text)
+   # print(response.status_code)
+  #  print(response.text)
 
 client.run(os.getenv('TOKEN2'))
