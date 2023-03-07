@@ -183,7 +183,7 @@ async def timestamp(ctx, *, strinput):
 
             # interaction.disabled = True
 
-            url = "http://localhost:2386/api/Raids"
+            url = "http://localhost:3862/api/Raids"
 
             post_data = {'raidname': raidselect,
                          'tier': tier,
@@ -253,7 +253,7 @@ async def on_custom_event(ctx, raidselect, tier, botdate):
 @client.event
 async def on_reaction_add(reaction, user):
     print(f"You reacted with {reaction.emoji} {user}")
-    url = "http://localhost:2386/api/Raidusers"
+    url = "http://localhost:3862/api/Raidusers"
 
     userD = str(user)
 
